@@ -43,7 +43,7 @@ FROM       FACT_TRANSACTIONS
 
 
 
---Q5      what was the total sales in each month of every year
+--Q4      what was the total sales in each month of every year
 
 select  Datepart(year,Date) as [Year]
         ,DATENAME(MONTH,Date) as [Month]
@@ -61,7 +61,7 @@ order by Year
 
 
 
---Q6     What is total sales on weekends and weekdays    (see next query)
+--Q5     What is total sales on weekends and weekdays 
 
 
 
@@ -105,7 +105,7 @@ AND
 
 
 
---Q7    Average price of top 5 manufacturer in USA
+--Q6    Average price of top 5 manufacturer in USA
 
 
 
@@ -141,7 +141,7 @@ order by   [Avg Amount] desc
 
 
 
---Q8    2nd and 3rd best zip code in each state of usa for the year 2009 in terms of transaction
+--Q7    2nd and 3rd best zip code in each state of usa for the year 2009 in terms of transaction
 
 
 
@@ -182,7 +182,7 @@ where [rank] in  (2,3)     -- 2ND AND 3RD BEST ZIPCODE IN EACH STATE IN TERMS OF
 
 
 
---Q9   2nd best product in terms of sales in each country for year 2009 and 2010
+--Q8   2nd best product in terms of sales in each country for year 2009 and 2010
 
 
 with cte1 as(
@@ -231,7 +231,7 @@ where rank in (2,3)       -- 2 AND 3 RANKED MODEL IN EACH COUNTRY IN TERMS OF TO
 
 
 
--- Q10  What is the percentage contribution of each model in total sales for each country
+-- Q9  What is the percentage contribution of each model in total sales for each country
 
 
 with cte1 as (
