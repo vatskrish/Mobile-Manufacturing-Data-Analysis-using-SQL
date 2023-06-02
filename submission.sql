@@ -8,7 +8,6 @@ and
      	  Date < DATEADD(day,-77,(select max(Date) FROM FACT_TRANSACTIONS))
 
 
-select    DATEADD(day,-59,'2023-8-5')
 
 
 
@@ -82,22 +81,6 @@ with tab as (
 select    day_type, sum(TotalPrice) as [Total Sales] from tab
 group by  day_type
 
-
-
-
-
-
-
-
-select  *, Datename(month,Date)
-       --,DATEPART(week,dateadd(day,1- datepart(day,Date),Date))
-
-
-from      FACT_TRANSACTIONS
-
-where     DATEPART(year,Date) = 2009
-AND 
-	      Datename(month,Date) = 'March'
 
 
 
@@ -200,7 +183,7 @@ where      DATEPART(year,trans.Date) in (2009,2010)
 
            group by loc.Country,trans.IDModel, DATEPART(year,trans.Date)    -- step 2 complete
  
-),       --		TOTAL SALES BY YEAR COUNTRY MODEL 
+),       --		TOTAL SALES BY YEAR, COUNTRY, MODEL 
 
 cte2 as (
 
@@ -209,7 +192,7 @@ cte2 as (
         group by Country,IDModel, [year]
 
 
-         ) ,   -- group by country id mdoel and sum price. so that there is only one model for each country
+         ) ,   -- group by country id mdoel and sum price. so that there is only one record for each model for each country
 		       -- which can be later ranked within year for that country
 
 cte3 as (
@@ -251,9 +234,9 @@ with cte1 as (
 
 select        *
               ,round(
-			          100 * ( ( CONVERT ( float , amount )    -    TotalPrice) / amount) 
-					  , 2
-					  ) as [percent_contri]
+	             100 * ( ( CONVERT ( float , amount )    -    TotalPrice) / amount) 
+		     , 2
+		     ) as [percent_contri]
 
 from cte1 
 
